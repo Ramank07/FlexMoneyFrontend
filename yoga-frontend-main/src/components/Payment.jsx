@@ -29,7 +29,7 @@ const PaymentForm = () => {
     e.preventDefault();
     // Add your API call to save data here
 
-    const response = await axios.post("http://localhost:3000/api/user/payment",{
+    const response = await axios.post("https://flexmoneybackend.vercel.app/api/user/payment",{
       email:formData.email
       }
       

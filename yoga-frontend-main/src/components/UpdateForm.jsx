@@ -30,7 +30,7 @@ const UpdateForm = () => {
     // Here you can handle the form submission, e.g., API call or navigating
     console.log(formData);
 
-    const response = await axios.put("http://localhost:3000/api/user/update",{
+    const response = await axios.put("https://flexmoneybackend.vercel.app/api/user/update",{
       name: formData.name,
       age: formData.age,
       email: formData.email,

@@ -30,7 +30,7 @@ const ModernForm = () => {
     // Here you can handle the form submission, e.g., API call or navigating
     console.log(formData);
 
-   const response = await axios.post("http://localhost:3000/api/user/",{
+   const response = await axios.post("https://flexmoneybackend.vercel.app/api/user/",{
     name: formData.name,
     age: formData.age,
     email: formData.email,
