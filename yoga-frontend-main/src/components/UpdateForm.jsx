@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios'
 import "../App.css";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
@@ -24,11 +25,23 @@ const UpdateForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     // Here you can handle the form submission, e.g., API call or navigating
     console.log(formData);
-    navigate("/payment");
+
+    const response = await axios.put("http://localhost:3000/api/user/update",{
+      name: formData.name,
+      age: formData.age,
+      email: formData.email,
+      phone: formData.phone,
+      batch: formData.batch
+      }
+      
+    )
+    console.log(response.data);
+    
+    navigate("/");
   };
 
   return (
@@ -116,10 +129,10 @@ const UpdateForm = () => {
                 onChange={handleChange}
               >
                 <option value="">Select Batch</option>
-                <option value="Batch 1">6-7 AM</option>
-                <option value="Batch 1">7-8 AM</option>
-                <option value="Batch 1">8-9 AM</option>
-                <option value="Batch 2">5-6 PM</option>
+                <option value="6-7AM">6-7AM</option>
+                <option value="7-8AM">7-8AM</option>
+                <option value="8-9AM">8-9AM</option>
+                <option value="5-6PM">5-6PM</option>
               </select>
             </div>
             {/* <div className="form-group">

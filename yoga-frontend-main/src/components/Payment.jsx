@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios'
 import "./PaymentForm.css";
 import { useNavigate } from "react-router-dom";
 
@@ -11,9 +12,9 @@ const PaymentForm = () => {
     cardNumber: "",
     cvv: "",
     paymentStatus: "Pending",
-    userId: "",
-    nameOnCard: "",
-    expiryDate: "",
+    email: "",
+    
+    
   });
 
   const handleChange = (e) => {
@@ -24,11 +25,19 @@ const PaymentForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     // Add your API call to save data here
-    navigate("/payment-status");
 
+    const response = await axios.post("http://localhost:3000/api/user/payment",{
+      email:formData.email
+      }
+      
+    )
+    console.log(response.data);
+    
+    navigate("/payment-status");
+    
     console.log(formData);
   };
 
@@ -103,18 +112,18 @@ const PaymentForm = () => {
             />
           </div>
 
-          {/* <div className="form-group">
-          <label htmlFor="userId">User ID</label>
+          <div className="form-group">
+          <label htmlFor="userId">email Id</label>
           <input
             type="text"
             id="userId"
-            name="userId"
-            value={formData.userId}
+            name="email"
+            value={formData.email}
             onChange={handleChange}
             required
-            placeholder="Enter your user ID"
+            placeholder="Enter your email ID"
           />
-        </div> */}
+        </div>
 
           <button type="submit" className="submit-btn">
             Submit Payment
